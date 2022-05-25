@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  nest:
+    image: tienpvse/nest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+  nest-dev:
+    image: nest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: development
+    command: npm run start:dev
+    volumes:
+      - .:/usr/src/app
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
